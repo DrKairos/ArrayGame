@@ -13,7 +13,16 @@ import java.util.Scanner;
  * @author DrKairos
  */
 public class Negaard_3_Arrays {
-
+    
+//    public static String[][] map = new String[41][41];
+//    public static Player player;
+//    public Itemwin ChestWin;
+//    public Enemy Bob;
+//    public ArrayList<Enemy> enemies = new ArrayList();
+//    public ArrayList<Item> treasure = new ArrayList();
+//    public ArrayList<Item1> treasure1 = new ArrayList();
+//    public ArrayList<Itemwin> ChestWin = new ArrayList();
+//    private boolean[][] hostiles;
     static Scanner sc = new Scanner(System.in);
     static String ar;
     public static boolean game;
@@ -28,24 +37,15 @@ public class Negaard_3_Arrays {
     public static int e1x, e1y, e2x, e2y;
     public static int score;
     public static boolean e1, e2;
-    
-//    public static String[][] map = new String[41][41];
-//    public static Player player;
-//    public Itemwin ChestWin;
-//    public Enemy Bob;
-//    public ArrayList<Enemy> enemies = new ArrayList();
-//    public ArrayList<Item> treasure = new ArrayList();
-//    public ArrayList<Item1> treasure1 = new ArrayList();
-//    public ArrayList<Itemwin> ChestWin = new ArrayList();
-//    private boolean[][] hostiles;
-    
+    public static String[][] map = new String[41][41];
+
     public static void main(String[] args) {
         game = true;
         e1 = true;
         e2 = true;
         char[][] map = new char[maxX][maxY];
 
-        map[x][y] = '|';
+        map[x][y] = '@';
 
         for (int t = 0; t < 50; t++) {
 
@@ -90,12 +90,12 @@ public class Negaard_3_Arrays {
             for (int j = 0; j <= map[1].length - 1; j++) {
                 if (j < map[1].length - 1) {
                     if (trap[j][i]) {
-                        map[i][j] = '#';
+                        map[i][j] = 'x';
                     }
                     if (treasure[j][i]) {
                         map[i][j] = '$';
                     }
-                    if (map[i][j] != '@' && map[i][j] != '#' && map[i][j] != 'E' && map[i][j] != '$') {
+                    if (map[i][j] != '@' && map[i][j] != 'x' && map[i][j] != 'E' && map[i][j] != '$') {
                         System.out.print(".");
                     } else {
                         System.out.print(map[i][j]);
@@ -257,6 +257,10 @@ public class Negaard_3_Arrays {
 
 }
     
+
+
+    
+
 
 
 
