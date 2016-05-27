@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package negaard_3_arrays;
+
 import static java.lang.Math.random;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -13,7 +14,7 @@ import java.util.Scanner;
  * @author DrKairos
  */
 public class Negaard_3_Arrays {
-    
+
 //    public static String[][] map = new String[41][41];
 //    public static Player player;
 //    public Itemwin ChestWin;
@@ -26,10 +27,10 @@ public class Negaard_3_Arrays {
     static Scanner sc = new Scanner(System.in);
     static String ar;
     public static boolean game;
-    public static int x = 13;
-    public static int y = 13;
-    public static int nx = x;
-    public static int ny = y;
+    public static int x;
+    public static int y;
+    public static int nx;
+    public static int ny;
     static int maxY = 42;
     static int maxX = 42;
     public static boolean[][] trap = new boolean[maxX][maxY];
@@ -40,6 +41,10 @@ public class Negaard_3_Arrays {
     public static String[][] map = new String[41][41];
 
     public static void main(String[] args) {
+        x = 13;
+        y = 13;
+        nx = 13;
+        ny = 13;
         game = true;
         e1 = true;
         e2 = true;
@@ -59,11 +64,12 @@ public class Negaard_3_Arrays {
             int treasurex = (int) Math.floor(Math.random() * maxX);
             int treasurey = (int) Math.floor(Math.random() * maxY);
 
-            treasure[treasurex][treasurey] = true; if(trap [treasurex][treasurey]){
-                trap [treasurex][treasurey] = false;
+            treasure[treasurex][treasurey] = true;
+            if (trap[treasurex][treasurey]) {
+                trap[treasurex][treasurey] = false;
             }
         }
-        
+
         e1x = (int) Math.floor(Math.random() * maxX);
         e1y = (int) Math.floor(Math.random() * maxX);
         e2x = (int) Math.floor(Math.random() * maxX);
@@ -75,9 +81,7 @@ public class Negaard_3_Arrays {
         if (trap[e2x][e2y]) {
             trap[e2x][e2y] = false;
         }
-      
-            
-        
+
         while (game) {
             grid(map);
             input(map);
@@ -128,12 +132,11 @@ public class Negaard_3_Arrays {
             treasure[x][y] = false;
             score++;
         }
-        
-            
+
     }
 
     public static void enemy(char[][] map) {
-        if (e1x > x && e1 ) {
+        if (e1x > x && e1) {
             map[e1y][e1x] = '.';
             e1x--;
 
@@ -173,11 +176,11 @@ public class Negaard_3_Arrays {
             e2y++;
 
         }
-        if(e1){
-           map[e1y][e1x] = 'E'; 
+        if (e1) {
+            map[e1y][e1x] = 'E';
         }
-        if(e2){
-        map[e2y][e2x] = 'E';
+        if (e2) {
+            map[e2y][e2x] = 'E';
         }
         if (trap[e1x][e1y]) {
             e1 = false;
@@ -201,67 +204,49 @@ public class Negaard_3_Arrays {
             game = false;
         }
         if (score == 3) {
-            System.out.println("\\ \\ / /__  _   _  \\ \\      / (_)_ __  \n" +
-" \\ V / _ \\| | | |  \\ \\ /\\ / /| | '_ \\ \n" +
-"  | | (_) | |_| |   \\ V  V / | | | | |\n" +
-"  |_|\\___/ \\__,_|    \\_/\\_/  |_|_| |_|");
+            System.out.println("\\ \\ / /__  _   _  \\ \\      / (_)_ __  \n"
+                    + " \\ V / _ \\| | | |  \\ \\ /\\ / /| | '_ \\ \n"
+                    + "  | | (_) | |_| |   \\ V  V / | | | | |\n"
+                    + "  |_|\\___/ \\__,_|    \\_/\\_/  |_|_| |_|");
             game = false;
         }
-        
+
     }
 
     public static void input(char[][] map) {
         System.out.println("Your score is: " + score);
         System.out.println("Choose a direction (N, NE, E, SE, S, SW, W, NW");
         ar = sc.nextLine().toLowerCase();
-        if (ar.contains("N") && y != 0) {
+
+        if (ar.contains("n") && y != 0) {
             map[y][x] = '.';
 //            y--;
             move(0, -1);
+             map[y][x] = '@';
         }
-        if (ar.contains("NE") && x != 0) {
-            map[y][x] = '.';
-//            x--;
-            move(-1, 0);
-        }
-        if (ar.contains("E") && y != 41) {
-            map[y][x] = '.';
-//            y++;
-            move(0, 1);
-        }
-        if (ar.contains("SE") && x != 41) {
-            map[y][x] = '.';
-//            x++;
-            move(1, 0);
-        }
-//        if (ar.contains("S") && y !=?) {
-//            map[y][x] = '.';
-//            move(?,?);
-//        }
-//        if (ar.contains("SW") && y !=?) {
-//            map[y][x] = '.';
-//            move(?,?);
-//        }
-//        if (ar.contains("W") && y !=?) {
-//            map[y][x] = '.';
-//            move(?,?);
-//        }
-//         if (ar.contains("NW") && y !=?) {
-//            map[y][x] = '.';
-//            move(?,?);
-//        }
 
-        map[y][x] = '@';
+            if (ar.contains("e") && y != 41) {
+                map[y][x] = '.';
+//            y++;
+                move(1, 0);
+                map[y][x] = '@';
+            }
+
+            if (ar.contains("s") && y != 41) {
+                map[y][x] = '.';
+                move(0, 1);
+                 map[y][x] = '@';
+            }
+
+            if (ar.contains("w") && y != 0) {
+                map[y][x] = '.';
+                move(-1, 0);
+                 map[y][x] = '@';
+            }
+
+            map[y][x] = '@';
+
+        
 
     }
-
 }
-    
-
-
-    
-
-
-
-
-
